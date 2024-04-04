@@ -14,7 +14,8 @@ class BalanceController extends AbstractController
   public function list(BillManager $billManager): Response
   {
     return $this->render('balance/balance.html.twig', [
-      'balance' => $billManager->balance()
+      'balance' => $billManager->balance(),
+      'debts'=> $billManager->calculateDebts($billManager->balance()),
     ]);
   }
 }
