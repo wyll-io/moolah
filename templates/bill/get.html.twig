@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ meetup.name }} - Kairos{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12">
+      <h2 class="mt-0 mb-4 text-info">{{ meetup.name }}</h2>
+    </div>
+  </div>
+
+  <!-- Infos -->
+  <div class="row mt-2">
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> Where</h5>  
+          <p class="card-text">
+            {{ meetup.location }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4 mt-2 mt-md-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-secondary"><i class="fa fa-money" aria-hidden="true"></i> Price</h5>
+          {% for price in meetup.price %}
+          <p class="card-text">
+            <b>{{ price.description }}</b> :  {{ price.price }}€
+          </p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4 mt-2 mt-md-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i> When</h5>  
+          <p class="card-text">
+            {{ meetup.startDate|format_datetime(pattern="EEEE d MMMM", locale='en') }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-secondary"><i class="fa fa-book" aria-hidden="true"></i> What</h5>  
+          <p class="card-text">
+            {{ meetup.content | raw }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-secondary"><i class="fa fa-question-circle" aria-hidden="true"></i> More information</h5>  
+          <p class="card-text mt-4">
+            {% if meetup.externalUrl %}
+            <a class="btn btn-primary" target="_blank" href="{{ meetup.externalUrl }}"><i class="fa fa-external-url" aria-hidden="true"></i> Go to website</a>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

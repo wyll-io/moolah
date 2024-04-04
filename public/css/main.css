@@ -1,0 +1,45 @@
+/****************
+ * Default HTML *
+ ****************/
+
+body
+{
+  font-family: 'Lato';
+}
+
+.btn-primary {
+  background-color: #132651 !important;
+  border-color: #132651 !important;
+}
+
+.text-primary {
+  color: #132651 !important;
+}
+
+.text-info {
+  color: #70161E !important;
+}
+
+.text-secondary {
+  color: #40798C !important;
+}
+
+.text-success {
+  color: #9CD08F !important;
+}
+
+.text-warning {
+  color: #E0A458 !important;
+}
+
+.bg-dark {
+  background-color: #132651 !important;
+}
+
+.card-title {
+  font-size: 170%;
+}
+
+.badge-warning {
+  background-color: #E0A458 !important;
+}

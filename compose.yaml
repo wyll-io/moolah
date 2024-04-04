@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: moolah
+      POSTGRES_PASSWORD: moolah!
+      POSTGRES_USER: moolah
+    ports:
+      - "5432:5432"
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+    networks:
+      main:
+        aliases:
+          - postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: test
+    ports:
+      - "8888:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      main:
+        aliases:
+          - pgadmin
+
+volumes:
+  database_data:
+  pgadmin_data:
+
+networks:
+  main:

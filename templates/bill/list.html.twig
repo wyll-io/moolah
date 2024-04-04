@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}Meetup list - Kairos{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-blue mt-4 mb-4">Meetups</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    {% for meetup in nextMeetups %}
+    <div class="col-12 col-md-4 mb-4">
+      {{ include('meetup/_meetup.html.twig') }}
+    </div>
+    {% else %}
+    <div class="col-12">
+      <p>Ooops.. there is no meetup yet :)</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-blue mt-4 mb-4">Previous meetups</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    {% for meetup in previousMeetups %}
+    <div class="col-12 col-md-4 mb-4">
+      {{ include('meetup/_meetup.html.twig') }}
+    </div>
+    {% else %}
+    <div class="col-12">
+      <p>Ooops.. there is no meetup yet :)</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

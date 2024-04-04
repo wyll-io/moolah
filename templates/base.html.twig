@@ -1,0 +1,22 @@
+<!DOCTYPE html lang="fr">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="All DevOps and Cloud events accross France">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %}Moolah{% endblock %}</title>
+
+  {{ include('stylesheet.html.twig') }}
+
+  <link rel="icon" type="image/png" href="{{ asset('moolah.png') }}" />
+</head>
+<body>
+  {{ include('navbar.html.twig') }}
+
+  {% block body %}{% endblock %}
+
+  {{ include('footer.html.twig') }}
+  {{ include('script.html.twig') }}
+</body>
+</html>

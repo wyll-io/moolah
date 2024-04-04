@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}Balance - Moolah{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12">
+      <h2 class="mt-0 mb-4 text-info">Balance</h2>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    {% for b in balance %}
+    <div class="col-12 col-md-3">
+        <div class="card mb-2">
+            <div class="card-body">
+                <p class="card-text">Qui : {{ b.person.displayName }}</p>
+                <p class="card-text">Balance: <span class="{% if b.balance < 0 %}text-danger{% else %}text-success{% endif %}">{{ b.balance|number_format(2, '.', ',') }}€</span></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
