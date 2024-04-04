@@ -1,15 +1,17 @@
 <div class="card mb-2 {{ bill.billType == 1 ? 'bg-light' :'bg-info' }}">
     <div class="card-body">
-        {{ bill.name }}
-        <br />
-        Paid by {{ bill.payer }}
-        <br />
-        Participants :
-        <ul>
-            {% for participant in bill.participants %}
-            <li>{{ participant.firstname }}</li>
-            {% endfor %}
-        </ul>
-        {{ bill.content }}
+        <h5 class="card-title">{{ bill.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{ bill.date|date('d-m-Y') }}</h6>
+        <p class="card-text">Paid by : {{ bill.payer.displayName }}</p>
+        <p class="card-text">Amount : {{ bill.amount }}€</p>
+        <p class="card-text">
+            Paid for :
+            <ul>
+                {% for participant in bill.participants %}
+                <li>{{ participant.firstname }}</li>
+                {% endfor %}
+            </ul>
+            {{ bill.content }}
+        </p>
     </div>
 </div>

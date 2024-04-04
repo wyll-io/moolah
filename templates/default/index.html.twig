@@ -8,10 +8,12 @@
         </div>
 
         {% for bill in bills %}
-        {{ include('bill/_bill.html.twig') }}
+        <div class="col-12 col-md-4">
+            {{ include('bill/_bill.html.twig') }}
+        </div>
         {% else %}
         <div class="col-12">
-        <p>Ooops.. there is no bill yet :)</p>
+            <p>Ooops.. there is no bill yet :)</p>
         </div>
         {% endfor %}
 </div>
