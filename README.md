@@ -1,5 +1,3 @@
-# Kairos
+# Moolah
 
-**Kairos** is a tool that lists all the DevOps events accross France.
-
-> *Kairos is a greek concept that means `the right time`*
+**Moolah** helps you to manage you expenses like Tricount.
