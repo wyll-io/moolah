@@ -28,19 +28,16 @@
     </div>
   </div>
 
-  {% for userId, userDebts in debts %}
-    {% set user = userDebts.user %}
-    <div>
-        <p>{{ user.displayName }} doit :</p>
-        <ul>
-            {% for creditorId, amount in userDebts.debts %}
-                {% if amount > 0 %}
-                    {% set creditor = debts[creditorId].user %}
-                    <li>{{ creditor.displayName }}: {{ amount|number_format(2, '.', ',') }} €</li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-{% endfor %}
+  {% if transactions is empty %}
+    <p>Aucune dette à régler.</p>
+{% else %}
+    <ul>
+    {% for transaction in transactions %}
+        <li>
+            {{ transaction.from.displayName }} doit payer {{ transaction.amount|number_format(2, '.', ',') }} € à {{ transaction.to.displayName }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
 </div>
 {% endblock %}

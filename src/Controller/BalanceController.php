@@ -13,14 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class BalanceController extends AbstractController
 {
   #[Route('/balance', name: 'balance')]
-  public function list(BillManager $billManager, UserRepository $userRepository, DebtCalculatorService $debtCalculator): Response
+  public function list(UserRepository $userRepository, DebtCalculatorService $debtCalculator): Response
   {
     $users = $userRepository->findAll();
     $debts = $debtCalculator->calculateDebts($users);
+    $balance = $debtCalculator->balance();
 
     return $this->render('balance/balance.html.twig', [
-      'balance' => $billManager->balance(),
-      'debts'=> $debts,
+      'balance' => $balance,
+      'transactions'=> $debts,
     ]);
   }
 }
