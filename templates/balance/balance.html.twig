@@ -28,14 +28,19 @@
     </div>
   </div>
 
-  {% for debt in debts %}
-  <div class="col-12">
-    <div class="card mb-2">
-      <div class="card-body">
-        <p class="card-text">{{ debt.payer.displayName }} must pay <b>{{ debt.amount|number_format(2, '.', ',') }}€</b> to {{ debt.receiver.displayName }}</p>
-      </div>
+  {% for userId, userDebts in debts %}
+    {% set user = userDebts.user %}
+    <div>
+        <p>{{ user.displayName }} doit :</p>
+        <ul>
+            {% for creditorId, amount in userDebts.debts %}
+                {% if amount > 0 %}
+                    {% set creditor = debts[creditorId].user %}
+                    <li>{{ creditor.displayName }}: {{ amount|number_format(2, '.', ',') }} €</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>
-  <br />
-  {% endfor %}
+{% endfor %}
 </div>
 {% endblock %}

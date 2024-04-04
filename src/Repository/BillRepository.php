@@ -31,4 +31,20 @@ class BillRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Récupère toutes les dépenses et leurs participants en une seule requête.
+     *
+     * @return Bill[]
+     */
+    public function findAllWithParticipants(): array
+    {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.participants', 'p') // 'participants' est le nom de la relation dans l'entité Bill
+            ->addSelect('p') // Sélectionne également les participants pour éviter les requêtes supplémentaires (lazy loading)
+            ->leftJoin('b.payer', 'o')
+            ->addSelect('o') // Sélectionne le propriétaire pour éviter les requêtes supplémentaires
+            ->getQuery()
+            ->getResult();
+    }
 }
